@@ -1,0 +1,66 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+  match /{all=**} {
+  allow delete:if false
+  }
+    match /funny/{doc} {
+      allow read;
+      allow write: if
+          request.resource.id.size()>1 &&
+          request.resource.id.size()<16&&
+          request.resource.id is string;
+    }
+     match /entertainer/{doc} {
+      allow read;
+      allow write: if
+          request.resource.id.size()>1 &&
+          request.resource.id.size()<16&&
+          request.resource.id is string;
+    }
+     match /savage/{doc} {
+      allow read;
+      allow write: if
+          request.resource.id.size()>1 &&
+          request.resource.id.size()<16&&
+          request.resource.id is string;
+    }
+     match /funny/{doc} {
+      allow read;
+      allow write: if
+          request.resource.id.size()>1 &&
+          request.resource.id.size()<16&&
+          request.resource.id is string;
+    }
+     match /intelligent/{doc} {
+      allow read;
+      allow write: if
+          request.resource.id.size()>1 &&
+          request.resource.id.size()<16&&
+          request.resource.id is string;
+    }
+    match /private/{doc}{
+    allow read,write : if false    
+    }
+   match /funny/{document}{
+allow read;
+allow write: if request.resource.data.users.size()>1 &&
+request.resource.data.users.size()<16
+}
+   match /entertainer/{document}{
+allow read;
+allow write: if request.resource.data.users.size()>1 &&
+request.resource.data.users.size()<16
+}
+ match /savage/{document}{
+allow read;
+allow write: if request.resource.data.users.size()>1 &&
+request.resource.data.users.size()<16
+}
+ match /intelligent/{document}{
+allow read;
+allow write: if request.resource.data.users.size()>1 &&
+request.resource.data.users.size()<16
+}
+  }
+}
